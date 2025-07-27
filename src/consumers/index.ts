@@ -7,6 +7,8 @@
  * @packageDocumentation
  */
 
+import { ServiceNames, type ServiceName } from '../services';
+
 /**
  * Primary Consumer Groups for Event Processing
  * 
@@ -170,34 +172,34 @@ export const ConsumerGroupStreams = {
  * Guides each service on which consumer groups they should typically use
  */
 export const ServiceConsumerRecommendations = {
-  'user-service': [
+  [ServiceNames.USER_SERVICE]: [
     ConsumerGroups.ANALYTICS_PROCESSORS,
     ConsumerGroups.AUDIT_PROCESSORS,
   ],
-  'hrm-service': [
+  [ServiceNames.HRM_SERVICE]: [
     ConsumerGroups.HRM_PROCESSORS,
     ConsumerGroups.ANALYTICS_PROCESSORS,
     ConsumerGroups.AUDIT_PROCESSORS,
   ],
-  'file-notification-service': [
+  [ServiceNames.FILE_NOTIFICATION_SERVICE]: [
     ConsumerGroups.EMAIL_PROCESSORS,
     ConsumerGroups.SMS_PROCESSORS,
     ConsumerGroups.FILE_PROCESSORS,
     ConsumerGroups.ANALYTICS_PROCESSORS,
   ],
-  'payment-service': [
+  [ServiceNames.PAYMENT_SERVICE]: [
     ConsumerGroups.PAYMENT_PROCESSORS,
     ConsumerGroups.ANALYTICS_PROCESSORS,
     ConsumerGroups.AUDIT_PROCESSORS,
   ],
-  'transport-service': [
+  [ServiceNames.TRANSPORT_SERVICE]: [
     ConsumerGroups.TRANSPORT_PROCESSORS,
     ConsumerGroups.ANALYTICS_PROCESSORS,
   ],
-  'analytics-service': [
+  [ServiceNames.AGGREGATOR_SERVICE]: [
     ConsumerGroups.ANALYTICS_PROCESSORS,
   ],
-  'audit-service': [
+  [ServiceNames.GATEWAY_SERVICE]: [
     ConsumerGroups.AUDIT_PROCESSORS,
   ],
 } as const;
@@ -206,7 +208,6 @@ export const ServiceConsumerRecommendations = {
  * Type definitions for type safety
  */
 export type ConsumerGroupName = typeof ConsumerGroups[keyof typeof ConsumerGroups];
-export type ServiceName = keyof typeof ServiceConsumerRecommendations;
 
 /**
  * Utility function to get recommended consumer groups for a service
@@ -216,7 +217,7 @@ export type ServiceName = keyof typeof ServiceConsumerRecommendations;
  * 
  * @example
  * ```typescript
- * const hrmGroups = getServiceConsumerGroups('hrm-service');
+ * const hrmGroups = getServiceConsumerGroups(ServiceNames.HRM_SERVICE);
  * // Returns: ['hrm-business-processors', 'analytics-processors', 'audit-trail-processors']
  * ```
  */

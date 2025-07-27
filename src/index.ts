@@ -52,7 +52,6 @@ export {
   getServiceConsumerGroups,
   getConsumerGroupStreams,
   type ConsumerGroupName,
-  type ServiceName,
 } from './consumers';
 
 /**
@@ -70,7 +69,7 @@ export {
  */
 export {
   ServiceNames,
-  type ServiceName as ServiceNameType,
+  type ServiceName,
 } from './services';
 
 // =============================================================================
@@ -188,31 +187,6 @@ export const PackageInfo = {
   repository: 'https://github.com/8medical/event-contracts',
 } as const;
 
-/**
- * Migration helpers for transitioning from legacy event systems
- */
-export const MigrationHelpers = {
-  /**
-   * Legacy stream name mappings for migration
-   */
-  legacyStreamMappings: {
-    'user-service': 'user-service-events',
-    'user_service_events': 'user-service-events',
-    'hrm-service': 'hrm-service-events',
-    'hrm_service_events': 'hrm-service-events',
-    'notification-events': 'notification-service-events',
-  } as const,
-
-  /**
-   * Get the new stream name for a legacy stream
-   * 
-   * @param legacyName - The old stream name
-   * @returns The new standardized stream name or undefined if not found
-   */
-  getLegacyMapping(legacyName: string): string | undefined {
-    return this.legacyStreamMappings[legacyName as keyof typeof this.legacyStreamMappings];
-  },
-} as const;
 
 // =============================================================================
 // RE-EXPORTS - For convenience (no duplicates)

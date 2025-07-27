@@ -5,6 +5,8 @@
  * business onboarding, and verification workflows.
  */
 
+import { ServiceNames } from '../services';
+
 /**
  * User Service Event Types
  */
@@ -74,7 +76,7 @@ export interface BusinessRegisteredEvent {
   
   metadata: {
     correlationId: string;
-    sourceService: 'user-service';
+    sourceService: typeof ServiceNames.USER_SERVICE;
     version: '1.0';
     requiresNotification: boolean;
     notificationTemplates?: string[];
@@ -106,7 +108,7 @@ export interface CustomerRegisteredEvent {
   
   metadata: {
     correlationId: string;
-    sourceService: 'user-service';
+    sourceService: typeof ServiceNames.USER_SERVICE;
     version: '1.0';
     requiresNotification: boolean;
     notificationTemplates?: string[];
@@ -142,7 +144,7 @@ export interface BusinessVerificationDecisionEvent {
   
   metadata: {
     correlationId: string;
-    sourceService: 'user-service';
+    sourceService: typeof ServiceNames.USER_SERVICE;
     version: '1.0';
     requiresNotification: boolean;
     notificationTemplates?: string[];
