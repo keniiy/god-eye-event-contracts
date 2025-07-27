@@ -1,6 +1,6 @@
-# @8medical/event-contracts
+# @kenniy/godeye-event-contracts
 
-## Shared event schemas and stream definitions for 8Medical microservices architecture
+## Shared event schemas and stream definitions for 8Medical godeye microservices architecture
 
 [![npm version](https://badge.fury.io/js/%40kenniy%2Fevent-contracts.svg)](https://www.npmjs.com/package/@kenniy/godeye-event-contracts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
