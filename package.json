@@ -30,12 +30,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/8medical/event-contracts.git"
+    "url": "git+https://github.com/keniiy/event-contracts.git"
   },
   "bugs": {
-    "url": "https://github.com/8medical/event-contracts/issues"
+    "url": "https://github.com/keniiy/event-contracts/issues"
   },
-  "homepage": "https://github.com/8medical/event-contracts#readme",
+  "homepage": "https://github.com/keniiy/event-contracts#readme",
   "devDependencies": {
     "typescript": "^5.0.0",
     "@types/node": "^20.0.0"

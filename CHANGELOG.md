@@ -122,6 +122,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Cross-domain event routing
   - Backwards compatibility layer
 
----
+### Planned for 2.1.0
 
-**Note**: This changelog follows the [8Medical Engineering Standards](https://docs.8medical.co/engineering/standards) for version management and release documentation.
+- **Advanced Features**:
+  - Event replay and recovery mechanisms
+  - Distributed tracing support
+  - Enhanced error handling and retry logic
+  - Performance optimizations for high-throughput scenarios
+
+## NOTE
+
+This changelog is a work in progress and will be updated as new features and improvements are made to the `@kenniy/event-contracts` package. Please refer to the GitHub repository for the latest information.

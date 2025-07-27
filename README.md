@@ -2,7 +2,7 @@
 
 ## Shared event schemas and stream definitions for 8Medical microservices architecture
 
-[![npm version](https://badge.fury.io/js/%408medical%2Fevent-contracts.svg)](https://www.npmjs.com/package/@8medical/event-contracts)
+[![npm version](https://badge.fury.io/js/%408medical%2Fevent-contracts.svg)](https://www.npmjs.com/package/@kenniy/event-contracts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🎯 Purpose
@@ -13,13 +13,13 @@ This package provides **standardized event contracts** across all 8Medical micro
 
 ```bash
 # NPM
-npm install @8medical/event-contracts
+npm install @kenniy/event-contracts
 
 # Yarn
-yarn add @8medical/event-contracts
+yarn add @kenniy/event-contracts
 
 # PNPM
-pnpm add @8medical/event-contracts
+pnpm add @kenniy/event-contracts
 ```
 
 ## 🚀 Quick Start
@@ -81,7 +81,7 @@ When you scale, easily migrate to domain-organized streams while keeping the sam
 ### User Service Events
 
 ```typescript
-import { UserServiceEvents, UserServiceSchemas } from '@8medical/event-contracts';
+import { UserServiceEvents, UserServiceSchemas } from '@kenniy/event-contracts';
 
 // Event Types
 UserServiceEvents.BUSINESS_REGISTERED      // 'user.business.registered'
@@ -107,7 +107,7 @@ interface BusinessRegisteredEvent extends UserServiceSchemas.BusinessRegistered 
 ### HRM Service Events
 
 ```typescript
-import { HrmServiceEvents, HrmServiceSchemas } from '@8medical/event-contracts';
+import { HrmServiceEvents, HrmServiceSchemas } from '@kenniy/event-contracts';
 
 HrmServiceEvents.HOSPITAL_PROFILE_CREATED   // 'hrm.hospital.created'
 HrmServiceEvents.RESOURCE_UPDATED           // 'hrm.resource.updated'
@@ -117,7 +117,7 @@ HrmServiceEvents.BED_ASSIGNED               // 'hrm.bed.assigned'
 ### Notification Service Events
 
 ```typescript
-import { NotificationServiceEvents } from '@8medical/event-contracts';
+import { NotificationServiceEvents } from '@kenniy/event-contracts';
 
 NotificationServiceEvents.EMAIL_SENT        // 'notification.email.sent'
 NotificationServiceEvents.SMS_SENT          // 'notification.sms.sent'
@@ -129,7 +129,7 @@ NotificationServiceEvents.FILE_UPLOADED     // 'notification.file.uploaded'
 ### Publishing Events
 
 ```typescript
-import { EventStreams, UserServiceEvents } from '@8medical/event-contracts';
+import { EventStreams, UserServiceEvents } from '@kenniy/event-contracts';
 
 class BusinessRegistrationService {
   async registerBusiness(businessData: BusinessRegistrationDto) {
@@ -167,7 +167,7 @@ class BusinessRegistrationService {
 ### Consuming Events
 
 ```typescript
-import { EventStreams, UserServiceEvents } from '@8medical/event-contracts';
+import { EventStreams, UserServiceEvents } from '@kenniy/event-contracts';
 
 class HrmEventConsumer {
   async startConsumers() {
@@ -199,7 +199,7 @@ class HrmEventConsumer {
 ### Type Safety
 
 ```typescript
-import { BaseEvent, UserServiceSchemas } from '@8medical/event-contracts';
+import { BaseEvent, UserServiceSchemas } from '@kenniy/event-contracts';
 
 // Fully typed event handling
 function handleBusinessEvent(event: BaseEvent<UserServiceSchemas.BusinessRegistered>) {
@@ -224,7 +224,7 @@ function handleBusinessEvent(event: BaseEvent<UserServiceSchemas.BusinessRegiste
 ### After (Standardized)
 
 ```typescript
-import { EventStreams } from '@8medical/event-contracts';
+import { EventStreams } from '@kenniy/event-contracts';
 
 // Both services use the same constant:
 EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
@@ -235,7 +235,7 @@ EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
 1. **Install the package:**
 
    ```bash
-   npm install @8medical/event-contracts
+   npm install @kenniy/event-contracts
    ```
 
 2. **Update imports:**
@@ -245,7 +245,7 @@ EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
    const streamName = 'user-service';
 
    // New
-   import { EventStreams } from '@8medical/event-contracts';
+   import { EventStreams } from '@kenniy/event-contracts';
    const streamName = EventStreams.USER_SERVICE_EVENTS;
    ```
 
@@ -256,7 +256,7 @@ EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
    const eventType = 'business.registered';
 
    // New
-   import { UserServiceEvents } from '@8medical/event-contracts';
+   import { UserServiceEvents } from '@kenniy/event-contracts';
    const eventType = UserServiceEvents.BUSINESS_REGISTERED;
    ```
 
@@ -265,7 +265,7 @@ EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
 ## 📊 Consumer Groups
 
 ```typescript
-import { ConsumerGroups } from '@8medical/event-contracts';
+import { ConsumerGroups } from '@kenniy/event-contracts';
 
 // Predefined consumer groups for different purposes
 ConsumerGroups.HRM_PROCESSORS           // 'hrm-business-processors'
@@ -278,7 +278,7 @@ ConsumerGroups.AUDIT_PROCESSORS         // 'audit-trail-processors'
 
 ```bash
 # Clone and setup
-git clone https://github.com/8medical/event-contracts.git
+git clone https://github.com/keniiy/event-contracts.git
 cd event-contracts
 npm install
 
@@ -330,10 +330,10 @@ MIT © 8Medical Development Team
 
 ## 🆘 Support
 
-- **Documentation**: [GitHub Wiki](https://github.com/8medical/event-contracts/wiki)
-- **Issues**: [GitHub Issues](https://github.com/8medical/event-contracts/issues)
+- **Documentation**: [GitHub Wiki](https://github.com/keniiy/god-eye-event-contracts/blob/main/README.md)
+- **Issues**: [GitHub Issues](https://github.com/keniiy/event-contracts/issues)
 - **Slack**: #event-architecture channel
-- **Email**: [dev@8medical.co](mailto:dev@8medical.co)
+- **Email**: [dev@8medical.co](mailto:kehindekehinde894@gmail.com)
 
 ---
 
