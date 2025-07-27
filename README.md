@@ -4,14 +4,14 @@
 
 [![npm version](https://badge.fury.io/js/%40kenniy%2Fgodeye-event-contracts.svg)](https://www.npmjs.com/package/@kenniy/godeye-event-contracts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
-[![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg)]()
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/keniiy/event-contracts/actions)
+[![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg)](https://github.com/keniiy/event-contracts/actions)
 
 ## 🎉 Latest Update: v1.0.7 - ABSOLUTE STANDARDIZATION ACHIEVED
 
-✅ **ZERO legacy code or hardcoded strings remaining**  
-✅ **ALL services use standardized constants**  
-✅ **Complete repetition elimination achieved**  
+✅ **ZERO legacy code or hardcoded strings remaining**
+✅ **ALL services use standardized constants**
+✅ **Complete repetition elimination achieved**
 ✅ **Pure standardization with no compromises**
 
 ## 🎯 Purpose
