@@ -2,7 +2,7 @@
 
 ## Shared event schemas and stream definitions for 8Medical microservices architecture
 
-[![npm version](https://badge.fury.io/js/%40kenniy%2Fevent-contracts.svg)](https://www.npmjs.com/package/@kenniy/event-contracts)
+[![npm version](https://badge.fury.io/js/%40kenniy%2Fevent-contracts.svg)](https://www.npmjs.com/package/@kenniy/godeye-event-contracts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🎯 Purpose
@@ -13,19 +13,19 @@ This package provides **standardized event contracts** across all 8Medical micro
 
 ```bash
 # NPM
-npm install @kenniy/event-contracts
+npm install @kenniy/godeye-event-contracts
 
 # Yarn
-yarn add @kenniy/event-contracts
+yarn add @kenniy/godeye-event-contracts
 
 # PNPM
-pnpm add @kenniy/event-contracts
+pnpm add @kenniy/godeye-event-contracts
 ```
 
 ## 🚀 Quick Start
 
  ```typescript
-import { EventStreams, UserServiceEvents } from '@8medical/event-contracts';
+import { EventStreams, UserServiceEvents } from '@kenniy/godeye-event-contracts';
 
 // Publisher (User Service)
 await eventPublisher.publish(
@@ -49,7 +49,7 @@ consumer.subscribe(EventStreams.USER_SERVICE_EVENTS, (event) => {
 Events are organized by **service ownership** with **domain-grouped schemas** for easy understanding:
 
 ```plaintext
-event-contracts/
+godeye-event-contracts/
 ├── streams/          # Stream definitions
 ├── events/           # Event schemas (organized by domain)
 │   ├── user-service/     # Registration, auth, verification
@@ -81,7 +81,7 @@ When you scale, easily migrate to domain-organized streams while keeping the sam
 ### User Service Events
 
 ```typescript
-import { UserServiceEvents, UserServiceSchemas } from '@kenniy/event-contracts';
+import { UserServiceEvents, UserServiceSchemas } from '@kenniy/godeye-event-contracts';
 
 // Event Types
 UserServiceEvents.BUSINESS_REGISTERED      // 'user.business.registered'
@@ -107,7 +107,7 @@ interface BusinessRegisteredEvent extends UserServiceSchemas.BusinessRegistered 
 ### HRM Service Events
 
 ```typescript
-import { HrmServiceEvents, HrmServiceSchemas } from '@kenniy/event-contracts';
+import { HrmServiceEvents, HrmServiceSchemas } from '@kenniy/godeye-event-contracts';
 
 HrmServiceEvents.HOSPITAL_PROFILE_CREATED   // 'hrm.hospital.created'
 HrmServiceEvents.RESOURCE_UPDATED           // 'hrm.resource.updated'
@@ -117,7 +117,7 @@ HrmServiceEvents.BED_ASSIGNED               // 'hrm.bed.assigned'
 ### Notification Service Events
 
 ```typescript
-import { NotificationServiceEvents } from '@kenniy/event-contracts';
+import { NotificationServiceEvents } from '@kenniy/godeye-event-contracts';
 
 NotificationServiceEvents.EMAIL_SENT        // 'notification.email.sent'
 NotificationServiceEvents.SMS_SENT          // 'notification.sms.sent'
@@ -129,7 +129,7 @@ NotificationServiceEvents.FILE_UPLOADED     // 'notification.file.uploaded'
 ### Publishing Events
 
 ```typescript
-import { EventStreams, UserServiceEvents } from '@kenniy/event-contracts';
+import { EventStreams, UserServiceEvents } from '@kenniy/godeye-event-contracts';
 
 class BusinessRegistrationService {
   async registerBusiness(businessData: BusinessRegistrationDto) {
@@ -167,7 +167,7 @@ class BusinessRegistrationService {
 ### Consuming Events
 
 ```typescript
-import { EventStreams, UserServiceEvents } from '@kenniy/event-contracts';
+import { EventStreams, UserServiceEvents } from '@kenniy/godeye-event-contracts';
 
 class HrmEventConsumer {
   async startConsumers() {
@@ -199,7 +199,7 @@ class HrmEventConsumer {
 ### Type Safety
 
 ```typescript
-import { BaseEvent, UserServiceSchemas } from '@kenniy/event-contracts';
+import { BaseEvent, UserServiceSchemas } from '@kenniy/godeye-event-contracts';
 
 // Fully typed event handling
 function handleBusinessEvent(event: BaseEvent<UserServiceSchemas.BusinessRegistered>) {
@@ -224,7 +224,7 @@ function handleBusinessEvent(event: BaseEvent<UserServiceSchemas.BusinessRegiste
 ### After (Standardized)
 
 ```typescript
-import { EventStreams } from '@kenniy/event-contracts';
+import { EventStreams } from '@kenniy/godeye-event-contracts';
 
 // Both services use the same constant:
 EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
@@ -235,7 +235,7 @@ EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
 1. **Install the package:**
 
    ```bash
-   npm install @kenniy/event-contracts
+   npm install @kenniy/godeye-event-contracts
    ```
 
 2. **Update imports:**
@@ -245,7 +245,7 @@ EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
    const streamName = 'user-service';
 
    // New
-   import { EventStreams } from '@kenniy/event-contracts';
+   import { EventStreams } from '@kenniy/godeye-event-contracts';
    const streamName = EventStreams.USER_SERVICE_EVENTS;
    ```
 
@@ -256,7 +256,7 @@ EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
    const eventType = 'business.registered';
 
    // New
-   import { UserServiceEvents } from '@kenniy/event-contracts';
+   import { UserServiceEvents } from '@kenniy/godeye-event-contracts';
    const eventType = UserServiceEvents.BUSINESS_REGISTERED;
    ```
 
@@ -265,7 +265,7 @@ EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
 ## 📊 Consumer Groups
 
 ```typescript
-import { ConsumerGroups } from '@kenniy/event-contracts';
+import { ConsumerGroups } from '@kenniy/godeye-event-contracts';
 
 // Predefined consumer groups for different purposes
 ConsumerGroups.HRM_PROCESSORS           // 'hrm-business-processors'
