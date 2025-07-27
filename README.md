@@ -333,7 +333,7 @@ MIT © 8Medical Development Team
 - **Documentation**: [GitHub Wiki](https://github.com/keniiy/god-eye-event-contracts/blob/main/README.md)
 - **Issues**: [GitHub Issues](https://github.com/keniiy/event-contracts/issues)
 - **Slack**: #event-architecture channel
-- **Email**: [dev@8medical.co](mailto:kehindekehinde894@gmail.com)
+- **Email**: [kehindekehinde@gmail.com](mailto:kehindekehinde@gmail.com)
 
 ---
 
