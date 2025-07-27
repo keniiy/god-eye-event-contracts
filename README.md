@@ -2,7 +2,7 @@
 
 ## Shared event schemas and stream definitions for 8Medical microservices architecture
 
-[![npm version](https://badge.fury.io/js/%408medical%2Fevent-contracts.svg)](https://www.npmjs.com/package/@kenniy/event-contracts)
+[![npm version](https://badge.fury.io/js/%40kenniy%2Fevent-contracts.svg)](https://www.npmjs.com/package/@kenniy/event-contracts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🎯 Purpose
