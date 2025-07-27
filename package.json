@@ -1,0 +1,54 @@
+{
+  "name": "@8medical/event-contracts",
+  "version": "1.0.0",
+  "description": "Shared event schemas and stream definitions for 8Medical microservices architecture",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build",
+    "test": "echo \"Tests not implemented yet\" && exit 0"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "package.json"
+  ],
+  "keywords": [
+    "events",
+    "microservices",
+    "healthcare",
+    "schemas",
+    "redis-streams",
+    "event-driven-architecture",
+    "8medical",
+    "god-eye"
+  ],
+  "author": {
+    "name": "8Medical Development Team",
+    "email": "dev@8medical.co"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/8medical/event-contracts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/8medical/event-contracts/issues"
+  },
+  "homepage": "https://github.com/8medical/event-contracts#readme",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
