@@ -8,6 +8,7 @@
  */
 
 import { ServiceNames, type ServiceName } from '../services';
+import { EventStreams } from '../streams';
 
 /**
  * Primary Consumer Groups for Event Processing
@@ -114,55 +115,55 @@ export const ConsumerGroups = {
  */
 export const ConsumerGroupStreams = {
   [ConsumerGroups.HRM_PROCESSORS]: [
-    'user-service-events',
-    'business-verification-events',
+    EventStreams.USER_SERVICE_EVENTS,
+    EventStreams.BUSINESS_VERIFICATION_EVENTS,
   ],
   [ConsumerGroups.EMAIL_PROCESSORS]: [
-    'user-service-events',
-    'hrm-service-events',
-    'payment-service-events',
-    'transport-service-events',
+    EventStreams.USER_SERVICE_EVENTS,
+    EventStreams.HRM_SERVICE_EVENTS,
+    EventStreams.PAYMENT_SERVICE_EVENTS,
+    EventStreams.TRANSPORT_SERVICE_EVENTS,
   ],
   [ConsumerGroups.SMS_PROCESSORS]: [
-    'user-service-events',
-    'hrm-service-events',
-    'transport-service-events',
+    EventStreams.USER_SERVICE_EVENTS,
+    EventStreams.HRM_SERVICE_EVENTS,
+    EventStreams.TRANSPORT_SERVICE_EVENTS,
   ],
   [ConsumerGroups.ANALYTICS_PROCESSORS]: [
-    'user-service-events',
-    'hrm-service-events',
-    'notification-service-events',
-    'payment-service-events',
-    'transport-service-events',
-    'business-verification-events',
-    'service-health-events',
+    EventStreams.USER_SERVICE_EVENTS,
+    EventStreams.HRM_SERVICE_EVENTS,
+    EventStreams.NOTIFICATION_SERVICE_EVENTS,
+    EventStreams.PAYMENT_SERVICE_EVENTS,
+    EventStreams.TRANSPORT_SERVICE_EVENTS,
+    EventStreams.BUSINESS_VERIFICATION_EVENTS,
+    EventStreams.SERVICE_HEALTH_EVENTS,
   ],
   [ConsumerGroups.AUDIT_PROCESSORS]: [
-    'user-service-events',
-    'hrm-service-events',
-    'notification-service-events',
-    'payment-service-events',
-    'transport-service-events',
-    'business-verification-events',
-    'audit-events',
+    EventStreams.USER_SERVICE_EVENTS,
+    EventStreams.HRM_SERVICE_EVENTS,
+    EventStreams.NOTIFICATION_SERVICE_EVENTS,
+    EventStreams.PAYMENT_SERVICE_EVENTS,
+    EventStreams.TRANSPORT_SERVICE_EVENTS,
+    EventStreams.BUSINESS_VERIFICATION_EVENTS,
+    EventStreams.AUDIT_EVENTS,
   ],
   [ConsumerGroups.PAYMENT_PROCESSORS]: [
-    'payment-service-events',
-    'user-service-events',
+    EventStreams.PAYMENT_SERVICE_EVENTS,
+    EventStreams.USER_SERVICE_EVENTS,
   ],
   [ConsumerGroups.TRANSPORT_PROCESSORS]: [
-    'transport-service-events',
-    'hrm-service-events',
+    EventStreams.TRANSPORT_SERVICE_EVENTS,
+    EventStreams.HRM_SERVICE_EVENTS,
   ],
   [ConsumerGroups.HEALTH_PROCESSORS]: [
-    'service-health-events',
-    'audit-events',
+    EventStreams.SERVICE_HEALTH_EVENTS,
+    EventStreams.AUDIT_EVENTS,
   ],
   [ConsumerGroups.INTEGRATION_PROCESSORS]: [
     // Configured per integration needs
   ],
   [ConsumerGroups.FILE_PROCESSORS]: [
-    'notification-service-events',
+    EventStreams.NOTIFICATION_SERVICE_EVENTS,
   ],
 } as const;
 
@@ -218,7 +219,7 @@ export type ConsumerGroupName = typeof ConsumerGroups[keyof typeof ConsumerGroup
  * @example
  * ```typescript
  * const hrmGroups = getServiceConsumerGroups(ServiceNames.HRM_SERVICE);
- * // Returns: ['hrm-business-processors', 'analytics-processors', 'audit-trail-processors']
+ * // Returns: [ConsumerGroups.HRM_PROCESSORS, ConsumerGroups.ANALYTICS_PROCESSORS, ConsumerGroups.AUDIT_PROCESSORS]
  * ```
  */
 export function getServiceConsumerGroups(serviceName: ServiceName): readonly ConsumerGroupName[] {
@@ -234,7 +235,7 @@ export function getServiceConsumerGroups(serviceName: ServiceName): readonly Con
  * @example
  * ```typescript
  * const streams = getConsumerGroupStreams(ConsumerGroups.EMAIL_PROCESSORS);
- * // Returns: ['user-service-events', 'hrm-service-events', ...]
+ * // Returns: [EventStreams.USER_SERVICE_EVENTS, EventStreams.HRM_SERVICE_EVENTS, ...]
  * ```
  */
 export function getConsumerGroupStreams(consumerGroup: ConsumerGroupName): readonly string[] {

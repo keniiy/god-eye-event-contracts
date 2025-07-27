@@ -5,6 +5,8 @@
  * SMS delivery, and notification status updates.
  */
 
+import { ServiceNames } from '../services';
+
 /**
  * Notification Service Event Types
  */
@@ -77,7 +79,7 @@ export interface EmailNotificationEvent {
   
   metadata: {
     correlationId: string;
-    sourceService: 'file-notification-service';
+    sourceService: typeof ServiceNames.FILE_NOTIFICATION_SERVICE;
     version: '1.0';
     originalRequestSource?: string; // Which service requested the email
     retryCount?: number;
@@ -120,7 +122,7 @@ export interface SmsNotificationEvent {
   
   metadata: {
     correlationId: string;
-    sourceService: 'file-notification-service';
+    sourceService: typeof ServiceNames.FILE_NOTIFICATION_SERVICE;
     version: '1.0';
     originalRequestSource?: string;
     retryCount?: number;
@@ -165,7 +167,7 @@ export interface FileEvent {
   
   metadata: {
     correlationId: string;
-    sourceService: 'file-notification-service';
+    sourceService: typeof ServiceNames.FILE_NOTIFICATION_SERVICE;
     version: '1.0';
     entityType?: string; // What the file relates to (business_verification, hospital_license, etc.)
     entityId?: string;

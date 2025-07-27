@@ -193,7 +193,7 @@ export type ServiceStreamGroup = keyof typeof StreamsByService;
  * @example
  * ```typescript
  * const userStreams = getStreamsByService('USER_SERVICE');
- * // Returns: ['user-service-events', 'business-verification-events']
+ * // Returns: [EventStreams.USER_SERVICE_EVENTS, EventStreams.BUSINESS_VERIFICATION_EVENTS]
  * ```
  */
 export function getStreamsByService(service: ServiceStreamGroup): readonly string[] {
@@ -208,8 +208,8 @@ export function getStreamsByService(service: ServiceStreamGroup): readonly strin
  * 
  * @example
  * ```typescript
- * const isValid = isValidStream('user-service-events'); // true
- * const isInvalid = isValidStream('random-stream'); // false
+ * const isValid = isValidStream(EventStreams.USER_SERVICE_EVENTS); // true
+ * const isInvalid = isValidStream('random-stream'); // false (example with invalid stream)
  * ```
  */
 export function isValidStream(streamName: string): streamName is EventStreamName {
