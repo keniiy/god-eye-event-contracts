@@ -15,7 +15,9 @@ export const UserServiceEventTypes = {
   
   // Authentication Events
   CUSTOMER_LOGGED_IN: 'customer.logged_in',
+  CUSTOMER_LOGGED_OUT: 'customer.logged_out',
   BUSINESS_LOGGED_IN: 'business.logged_in',
+  BUSINESS_LOGGED_OUT: 'business.logged_out',
   
   // Verification Events
   EMAIL_VERIFIED: 'email.verified',
@@ -24,6 +26,12 @@ export const UserServiceEventTypes = {
   // Profile Events
   PROFILE_UPDATED: 'profile.updated',
   PASSWORD_CHANGED: 'password.changed',
+  PASSWORD_RESET: 'customer.password_reset',
+  
+  // Admin Events
+  ADMIN_CREATED: 'admin.created',
+  ADMIN_LOGGED_IN: 'admin.logged_in',
+  ADMIN_LOGGED_OUT: 'admin.logged_out',
   
   // Business Verification Events
   BUSINESS_VERIFICATION_SUBMITTED: 'business.verification.submitted',

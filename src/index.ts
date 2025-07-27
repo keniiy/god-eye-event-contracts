@@ -55,6 +55,24 @@ export {
   type ServiceName,
 } from './consumers';
 
+/**
+ * Service Names for consistent metadata and identification
+ * 
+ * @example
+ * ```typescript
+ * import { ServiceNames } from '@8medical/event-contracts';
+ * 
+ * const metadata = {
+ *   source: ServiceNames.USER_SERVICE,
+ *   version: '1.0.0'
+ * };
+ * ```
+ */
+export {
+  ServiceNames,
+  type ServiceName as ServiceNameType,
+} from './services';
+
 // =============================================================================
 // SCHEMA EXPORTS - For type-safe event handling
 // =============================================================================
@@ -98,13 +116,13 @@ export {
  * @example
  * ```typescript
  * import { 
- *   UserServiceEvents, 
+ *   UserServiceEventTypes, 
  *   BusinessRegisteredEvent,
  *   CustomerRegisteredEvent 
  * } from '@8medical/event-contracts';
  * 
  * // Event type constants
- * const eventType = UserServiceEvents.BUSINESS_REGISTERED;
+ * const eventType = UserServiceEventTypes.BUSINESS_REGISTERED;
  * 
  * // Typed event handling
  * function handleBusinessRegistration(event: BusinessRegisteredEvent) {
@@ -113,6 +131,28 @@ export {
  * ```
  */
 export * from './events/user-service';
+
+/**
+ * System Events - Service monitoring, health checks, infrastructure
+ * 
+ * @example
+ * ```typescript
+ * import { 
+ *   SystemEventTypes, 
+ *   ServiceWelcomeEvent,
+ *   ServiceHeartbeatEvent 
+ * } from '@8medical/event-contracts';
+ * 
+ * // Event type constants
+ * const eventType = SystemEventTypes.SERVICE_WELCOME;
+ * 
+ * // Typed event handling
+ * function handleServiceWelcome(event: ServiceWelcomeEvent) {
+ *   console.log(`Service started: ${event.data.serviceName}`);
+ * }
+ * ```
+ */
+export * from './events/system';
 
 // =============================================================================
 // FUTURE SERVICE EXPORTS (will be added in Phase 1.1+)

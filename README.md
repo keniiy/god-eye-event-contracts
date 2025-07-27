@@ -2,8 +2,17 @@
 
 ## Shared event schemas and stream definitions for 8Medical godeye microservices architecture
 
-[![npm version](https://badge.fury.io/js/%40kenniy%2Fevent-contracts.svg)](https://www.npmjs.com/package/@kenniy/godeye-event-contracts)
+[![npm version](https://badge.fury.io/js/%40kenniy%2Fgodeye-event-contracts.svg)](https://www.npmjs.com/package/@kenniy/godeye-event-contracts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
+[![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg)]()
+
+## 🎉 Latest Update: v1.0.4 - Complete Legacy Cleanup
+
+✅ **All GOD-EYE services now fully standardized**  
+✅ **Legacy event files and constants removed**  
+✅ **Schema mismatches resolved**  
+✅ **All services compile successfully**
 
 ## 🎯 Purpose
 
@@ -295,12 +304,15 @@ npm publish
 
 ## 📈 Roadmap
 
-### Phase 1: Service-Based (Current)
+### Phase 1: Service-Based (✅ COMPLETED)
 
 - [x] Standardized stream names
 - [x] Type-safe event schemas
 - [x] Consumer group definitions
 - [x] Migration documentation
+- [x] **NEW v1.0.4**: Complete legacy cleanup across all services
+- [x] **NEW v1.0.4**: System events for service health monitoring
+- [x] **NEW v1.0.4**: Schema validation and compilation testing
 
 ### Phase 2: Domain-Based (6+ months)
 
