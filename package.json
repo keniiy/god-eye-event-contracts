@@ -1,5 +1,5 @@
 {
-  "name": "@8medical/event-contracts",
+  "name": "@kenniy/event-contracts",
   "version": "1.0.0",
   "description": "Shared event schemas and stream definitions for 8Medical microservices architecture",
   "main": "dist/index.js",
@@ -26,14 +26,11 @@
     "8medical",
     "god-eye"
   ],
-  "author": {
-    "name": "8Medical Development Team",
-    "email": "dev@8medical.co"
-  },
+  "author": "8Medical Development Team <dev@8medical.co>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/8medical/event-contracts.git"
+    "url": "git+https://github.com/8medical/event-contracts.git"
   },
   "bugs": {
     "url": "https://github.com/8medical/event-contracts/issues"
@@ -50,5 +47,8 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "undici-types": "^6.21.0"
   }
 }
