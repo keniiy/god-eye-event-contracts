@@ -115,13 +115,13 @@ export {
  * @example
  * ```typescript
  * import { 
- *   UserServiceEventTypes, 
+ *   UserServiceEvents, 
  *   BusinessRegisteredEvent,
  *   CustomerRegisteredEvent 
- * } from '@8medical/event-contracts';
+ * } from '@kenniy/godeye-event-contracts';
  * 
  * // Event type constants
- * const eventType = UserServiceEventTypes.BUSINESS_REGISTERED;
+ * const eventType = UserServiceEvents.BUSINESS_REGISTERED;
  * 
  * // Typed event handling
  * function handleBusinessRegistration(event: BusinessRegisteredEvent) {

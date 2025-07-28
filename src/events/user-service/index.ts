@@ -26,6 +26,7 @@ export const UserServiceEvents = {
   AGENT_INVITED: 'user.agent.invited',
   AGENT_ACCEPTED: 'user.agent.accepted',
   AGENT_REJECTED: 'user.agent.rejected',
+  AGENT_ACTIVATED: 'user.agent.activated',
   
   // Authentication Events (coming in Phase 1.1)
   CUSTOMER_LOGGED_IN: 'user.customer.logged_in',
@@ -42,6 +43,10 @@ export const UserServiceEvents = {
   // Profile Events (coming in Phase 1.1)
   PROFILE_UPDATED: 'user.profile.updated',
   PREFERENCES_UPDATED: 'user.preferences.updated',
+  
+  // Hospital Approval Events
+  HOSPITAL_READY_FOR_APPROVAL: 'user.hospital.ready_for_approval',
+  HOSPITAL_APPROVAL_DECISION: 'user.hospital.approval_decision',
 } as const;
 
 /**
