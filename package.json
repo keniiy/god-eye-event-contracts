@@ -1,6 +1,6 @@
 {
   "name": "@kenniy/godeye-event-contracts",
-  "version": "1.0.11",
+  "version": "1.0.14",
   "description": "Shared event schemas and stream definitions for 8Medical microservices architecture",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

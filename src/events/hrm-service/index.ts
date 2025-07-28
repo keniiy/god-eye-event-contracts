@@ -15,6 +15,14 @@ export const HrmServiceEvents = {
   HOSPITAL_APPROVED: 'hrm.hospital.approved',
   HOSPITAL_REJECTED: 'hrm.hospital.rejected',
   HOSPITAL_SUSPENDED: 'hrm.hospital.suspended',
+  HOSPITAL_PROFILE_CREATION: 'hrm.hospital.profile_creation',
+  HRM_SECTION_COMPLETED: 'hrm.onboarding.section_completed',
+  HRM_SETUP_COMPLETED: 'hrm.onboarding.setup_completed',
+  
+  // Internal Event Emitter events (for @OnEvent decorators)
+  HRM_SECTION_COMPLETED_INTERNAL: 'hrm.section.completed',
+  HRM_SETUP_COMPLETED_INTERNAL: 'hrm.setup.completed',
+  HOSPITAL_PROFILE_CREATION_INTERNAL: 'hospital.profile.creation',
   
   // Bed Management Events
   BED_ALLOCATED: 'hrm.bed.allocated',

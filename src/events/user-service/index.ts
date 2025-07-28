@@ -44,6 +44,12 @@ export const UserServiceEvents = {
   PHONE_VERIFIED: 'user.phone.verified',
   BUSINESS_VERIFIED: 'user.business.verified',
   BUSINESS_REJECTED: 'user.business.rejected',
+  BUSINESS_VERIFICATION: 'user.business.verification',
+  
+  // Internal Event Emitter events (for @OnEvent decorators)  
+  BUSINESS_VERIFICATION_APPROVED_INTERNAL: 'business.verification.approved',
+  BUSINESS_VERIFICATION_REJECTED_INTERNAL: 'business.verification.rejected',
+  BUSINESS_DOCUMENTS_SUBMITTED_INTERNAL: 'business.documents.submitted',
   
   // Profile Events (coming in Phase 1.1)
   PROFILE_UPDATED: 'user.profile.updated',
