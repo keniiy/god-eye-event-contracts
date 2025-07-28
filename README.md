@@ -1,287 +1,249 @@
-# @kenniy/godeye-event-contracts
+# GOD-EYE Event Contracts
 
-## Shared event schemas and stream definitions for 8Medical godeye microservices architecture
+Standardized event schemas and stream definitions for 8Medical microservices architecture.
 
 [![npm version](https://badge.fury.io/js/%40kenniy%2Fgodeye-event-contracts.svg)](https://www.npmjs.com/package/@kenniy/godeye-event-contracts)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](https://github.com/keniiy/event-contracts/actions)
-[![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen.svg)](https://github.com/keniiy/event-contracts/actions)
 
-## 🎉 Latest Update: v1.0.7 - ABSOLUTE STANDARDIZATION ACHIEVED
+## 🎉 Latest Update: v1.0.11 - COMPLETE STANDARDIZATION ACHIEVED
 
 ✅ **ZERO legacy code or hardcoded strings remaining**
 ✅ **ALL services use standardized constants**
-✅ **Complete repetition elimination achieved**
-✅ **Pure standardization with no compromises**
-
-## 🎯 Purpose
-
-This package provides **standardized event contracts** across all 8Medical microservices, ensuring consistent communication patterns and preventing integration issues like stream name mismatches.
-
-## 📦 Installation
-
-```bash
-# NPM
-npm install @kenniy/godeye-event-contracts
-
-# Yarn
-yarn add @kenniy/godeye-event-contracts
-
-# PNPM
-pnpm add @kenniy/godeye-event-contracts
-```
-
-## 🚀 Quick Start
-
- ```typescript
-import { EventStreams, UserServiceEvents } from '@kenniy/godeye-event-contracts';
-
-// Publisher (User Service)
-await eventPublisher.publish(
-  EventStreams.USER_SERVICE_EVENTS,
-  UserServiceEvents.BUSINESS_REGISTERED,
-  businessData
-);
-
-// Consumer (HRM Service)
-consumer.subscribe(EventStreams.USER_SERVICE_EVENTS, (event) => {
-  if (event.eventType === UserServiceEvents.BUSINESS_REGISTERED) {
-    await createHospitalProfile(event.data);
-  }
-});
-```
+✅ **Event flow mismatches completely resolved**
+✅ **Clean, maintainable folder structure**
+✅ **100% type safety with TypeScript**
 
 ## 🏗️ Architecture
 
-### Phase 1: Service-Based Streams (Current)
+This package provides a unified event-driven communication contract for all microservices in the GOD-EYE Healthcare Platform.
 
-Events are organized by **service ownership** with **domain-grouped schemas** for easy understanding:
+## 📁 Project Structure
 
 ```plaintext
-godeye-event-contracts/
-├── streams/          # Stream definitions
-├── events/           # Event schemas (organized by domain)
-│   ├── user-service/     # Registration, auth, verification
-│   ├── hrm-service/      # Hospital management, resources
-│   ├── notifications/    # Email, SMS, file events
-│   ├── payments/         # Transaction, billing events
-│   ├── transport/        # Ambulance, logistics events
-│   └── system/           # Health, monitoring events
-├── schemas/          # Shared types and base interfaces
-└── consumers/        # Consumer group definitions
+@kenniy/godeye-event-contracts/
+src/
+├── consumers/           # Consumer group definitions
+│   └── index.ts        # ConsumerGroups, ConsumerGroupName type
+├── events/             # Service-specific event schemas
+│   ├── user-service/
+│   │   ├── index.ts    # UserServiceEvents
+│   │   └── registration.ts
+│   ├── hrm-service/
+│   │   └── index.ts    # HrmServiceEvents
+│   ├── file-notification-service/
+│   │   └── index.ts    # NotificationServiceEventTypes
+│   └── system/
+│       └── index.ts    # SystemEventTypes
+├── schemas/            # Base event interfaces
+│   └── base-event.ts   # BaseEvent, EventEnvelope, etc.
+├── services/           # Service name constants
+│   └── index.ts        # ServiceNames, ServiceName type
+├── streams/            # Stream definitions
+│   └── index.ts        # EventStreams, EventStreamName type
+├── config/             # Configuration mappings
+│   ├── index.ts        # Barrel file
+│   ├── consumer-group-streams.ts
+│   └── service-consumer-recommendations.ts
+└── index.ts            # Main barrel file
 ```
 
-### Phase 2: Domain-Based Streams (Future)
+## 🚀 Installation
 
-When you scale, easily migrate to domain-organized streams while keeping the same event schemas.
+```bash
+npm install @kenniy/godeye-event-contracts
+```
 
-## 📋 Available Streams
+## 📖 Usage
 
-| Stream | Purpose | Publishers | Consumers |
-|--------|---------|------------|-----------|
-| `user-service-events` | User registration, auth | User Service | HRM, Notifications, Analytics |
-| `hrm-service-events` | Hospital management | HRM Service | User, Notifications, Analytics |
-| `notification-service-events` | Email/SMS delivery | File+Notification | Analytics, Audit |
-| `payment-service-events` | Financial transactions | Payment Service | User, Notifications, Analytics |
-| `transport-service-events` | Ambulance logistics | Transport Service | HRM, Notifications, Analytics |
+### Basic Event Publishing
 
-## 📚 Event Types
+```typescript
+import {
+  EventStreams,
+  UserServiceEvents,
+  ServiceNames
+} from '@kenniy/godeye-event-contracts';
+
+// Publish a business registration event
+await eventPublisher.publish(
+  EventStreams.USER_SERVICE_EVENTS,
+  UserServiceEvents.BUSINESS_REGISTERED,
+  {
+    businessId: '123',
+    businessName: 'Medical Center',
+    email: 'contact@medical.com'
+  }
+);
+```
+
+### Event Consumption
+
+```typescript
+import {
+  EventStreams,
+  UserServiceEvents,
+  ConsumerGroups
+} from '@kenniy/godeye-event-contracts';
+
+// Listen for business registration events
+consumer.subscribe(
+  EventStreams.USER_SERVICE_EVENTS,
+  ConsumerGroups.EMAIL_PROCESSORS,
+  (event) => {
+    if (event.eventType === UserServiceEvents.BUSINESS_REGISTERED) {
+      // Send welcome email
+      console.log(`Welcome ${event.data.businessName}!`);
+    }
+  }
+);
+```
+
+### Consumer Group Configuration
+
+```typescript
+import {
+  ConsumerGroups,
+  getConsumerGroupStreams,
+  getServiceConsumerGroups
+} from '@kenniy/godeye-event-contracts';
+
+// Get recommended consumer groups for a service
+const groups = getServiceConsumerGroups(ServiceNames.FILE_NOTIFICATION_SERVICE);
+// Returns: [ConsumerGroups.EMAIL_PROCESSORS, ConsumerGroups.SMS_PROCESSORS, ...]
+
+// Get streams for a consumer group
+const streams = getConsumerGroupStreams(ConsumerGroups.EMAIL_PROCESSORS);
+// Returns: [EventStreams.USER_SERVICE_EVENTS, EventStreams.HRM_SERVICE_EVENTS, ...]
+```
+
+## 🎯 Event Types by Service
 
 ### User Service Events
 
-```typescript
-import { UserServiceEvents, UserServiceSchemas } from '@kenniy/godeye-event-contracts';
-
-// Event Types
-UserServiceEvents.BUSINESS_REGISTERED      // 'user.business.registered'
-UserServiceEvents.CUSTOMER_REGISTERED      // 'user.customer.registered'
-UserServiceEvents.EMAIL_VERIFIED           // 'user.email.verified'
-UserServiceEvents.BUSINESS_VERIFIED        // 'user.business.verified'
-
-// Event Schemas
-interface BusinessRegisteredEvent extends UserServiceSchemas.BusinessRegistered {
-  eventId: string;
-  eventType: 'user.business.registered';
-  timestamp: string;
-  data: {
-    businessId: string;
-    businessName: string;
-    businessType: 'hospital' | 'hmo' | 'diagnostic_center';
-    email: string;
-    // ... more fields
-  };
-}
-```
+- `CUSTOMER_REGISTERED` - New customer registration
+- `BUSINESS_REGISTERED` - New business registration
+- `ADMIN_CREATED` - Admin user creation
+- `CUSTOMER_LOGGED_IN/OUT` - Authentication events
+- `EMAIL_VERIFIED` - Email verification completion
+- `PASSWORD_RESET_REQUESTED` - Password reset requests
 
 ### HRM Service Events
 
-```typescript
-import { HrmServiceEvents, HrmServiceSchemas } from '@kenniy/godeye-event-contracts';
+- `HOSPITAL_REGISTERED` - Hospital registration
+- `BED_ALLOCATED/RELEASED` - Bed management
+- `STAFF_ASSIGNED` - Staff assignments
+- `EMERGENCY_ALERT` - Emergency notifications
 
-HrmServiceEvents.HOSPITAL_PROFILE_CREATED   // 'hrm.hospital.created'
-HrmServiceEvents.RESOURCE_UPDATED           // 'hrm.resource.updated'
-HrmServiceEvents.BED_ASSIGNED               // 'hrm.bed.assigned'
-```
+### File+Notification Service Events
 
-### Notification Service Events
+- `EMAIL_SENT/FAILED/DELIVERED` - Email delivery tracking
+- `SMS_SENT/FAILED/DELIVERED` - SMS delivery tracking
+- `FILE_UPLOADED/PROCESSED` - File processing events
 
-```typescript
-import { NotificationServiceEvents } from '@kenniy/godeye-event-contracts';
+### System Events
 
-NotificationServiceEvents.EMAIL_SENT        // 'notification.email.sent'
-NotificationServiceEvents.SMS_SENT          // 'notification.sms.sent'
-NotificationServiceEvents.FILE_UPLOADED     // 'notification.file.uploaded'
-```
+- `SERVICE_WELCOME` - Service startup announcements
+- `SERVICE_HEARTBEAT` - Health check events
 
-## 🔧 Usage Examples
+## 🔄 Event Streams
 
-### Publishing Events
+- `USER_SERVICE_EVENTS` - User registration, authentication
+- `HRM_SERVICE_EVENTS` - Hospital resource management
+- `NOTIFICATION_SERVICE_EVENTS` - Email/SMS delivery
+- `BUSINESS_VERIFICATION_EVENTS` - Business verification workflow
+- `SERVICE_HEALTH_EVENTS` - System monitoring
 
-```typescript
-import { EventStreams, UserServiceEvents } from '@kenniy/godeye-event-contracts';
+## 👥 Consumer Groups
 
-class BusinessRegistrationService {
-  async registerBusiness(businessData: BusinessRegistrationDto) {
-    // 1. Create business entity
-    const business = await this.createBusinessEntity(businessData);
+- `EMAIL_PROCESSORS` - Email notification handling
+- `SMS_PROCESSORS` - SMS notification handling
+- `HRM_PROCESSORS` - Hospital business logic
+- `ANALYTICS_PROCESSORS` - Data analytics and reporting
+- `AUDIT_PROCESSORS` - Compliance and security logging
 
-    // 2. Publish standardized event
-    await this.eventPublisher.publish(
-      EventStreams.USER_SERVICE_EVENTS,
-      {
-        eventId: uuidv4(),
-        eventType: UserServiceEvents.BUSINESS_REGISTERED,
-        timestamp: new Date().toISOString(),
-        data: {
-          businessId: business.id,
-          businessName: business.name,
-          businessType: business.type,
-          email: business.email,
-          ownerId: business.ownerId,
-          registeredAt: business.createdAt,
-        },
-        metadata: {
-          correlationId: businessData.correlationId,
-          sourceService: 'user-service',
-          version: '1.0',
-        }
-      }
-    );
+## 🏥 Service Names
 
-    return business;
-  }
-}
-```
+- `USER_SERVICE` - User management and authentication
+- `HRM_SERVICE` - Hospital resource management
+- `FILE_NOTIFICATION_SERVICE` - File processing and notifications
+- `PAYMENT_SERVICE` - Payment processing
+- `TRANSPORT_SERVICE` - Ambulance and logistics
+- `AGGREGATOR_SERVICE` - Data aggregation
+- `GATEWAY_SERVICE` - API gateway
 
-### Consuming Events
+## 📝 Type Safety
+
+All events are fully typed with TypeScript interfaces:
 
 ```typescript
-import { EventStreams, UserServiceEvents } from '@kenniy/godeye-event-contracts';
+import { BusinessRegisteredEvent, CustomerRegisteredEvent } from '@kenniy/godeye-event-contracts';
 
-class HrmEventConsumer {
-  async startConsumers() {
-    // Subscribe to user service events
-    await this.consumer.subscribe(
-      EventStreams.USER_SERVICE_EVENTS,
-      this.consumerGroup,
-      async (event) => {
-        switch (event.eventType) {
-          case UserServiceEvents.BUSINESS_REGISTERED:
-            await this.handleBusinessRegistration(event);
-            break;
-          case UserServiceEvents.BUSINESS_VERIFIED:
-            await this.handleBusinessVerification(event);
-            break;
-        }
-      }
-    );
-  }
-
-  private async handleBusinessRegistration(event: BusinessRegisteredEvent) {
-    if (event.data.businessType === 'hospital') {
-      await this.createHospitalProfile(event.data);
-    }
-  }
-}
-```
-
-### Type Safety
-
-```typescript
-import { BaseEvent, UserServiceSchemas } from '@kenniy/godeye-event-contracts';
-
-// Fully typed event handling
-function handleBusinessEvent(event: BaseEvent<UserServiceSchemas.BusinessRegistered>) {
-  // TypeScript knows the exact shape of event.data
+function handleBusinessRegistration(event: BusinessRegisteredEvent) {
+  // event.data is fully typed
   console.log(`New business: ${event.data.businessName}`);
-  console.log(`Business type: ${event.data.businessType}`); // Autocomplete works!
+  console.log(`Contact: ${event.data.email}`);
 }
 ```
+
+## 🔧 Configuration
+
+The package provides configuration helpers for setting up consumer groups and stream mappings:
+
+```typescript
+import {
+  ServiceConsumerRecommendations,
+  ConsumerGroupStreams
+} from '@kenniy/godeye-event-contracts';
+
+// Get all recommended setups
+const recommendations = ServiceConsumerRecommendations;
+const streamMappings = ConsumerGroupStreams;
+```
+
+## 📊 Event Flow Examples
+
+### Business Registration Flow
+
+1. **User Service** publishes `UserServiceEvents.BUSINESS_REGISTERED`
+2. **File+Notification Service** consumes via `ConsumerGroups.EMAIL_PROCESSORS`
+3. **HRM Service** consumes via `ConsumerGroups.HRM_PROCESSORS`
+4. Welcome email sent + hospital profile created
+
+### Hospital Bed Management
+
+1. **HRM Service** publishes `HrmServiceEvents.BED_ALLOCATED`
+2. **Analytics Service** tracks via `ConsumerGroups.ANALYTICS_PROCESSORS`
+3. **Notification Service** sends alerts via `ConsumerGroups.SMS_PROCESSORS`
 
 ## 🔄 Migration from Legacy
 
-### Before (Inconsistent naming)
+### Before (Event Mismatches)
 
 ```typescript
-// User Service published to:
-'user-service'
+// File+Notification Service was importing:
+import { UserServiceEventTypes } from '@kenniy/godeye-event-contracts'; // ❌ DIDN'T EXIST!
 
-// HRM Service consumed from:
-'user_service_events'  // ❌ MISMATCH!
+// Causing events to be lost between services
 ```
 
-### After (Standardized)
+### After (Fixed)
 
 ```typescript
-import { EventStreams } from '@kenniy/godeye-event-contracts';
+// Now correctly imports:
+import { UserServiceEvents } from '@kenniy/godeye-event-contracts'; // ✅ WORKS!
 
-// Both services use the same constant:
-EventStreams.USER_SERVICE_EVENTS  // ✅ 'user-service-events'
+// Events flow correctly: User Service → File+Notification Service
 ```
 
-### Migration Steps
+## 🚦 Version History
 
-1. **Install the package:**
-
-   ```bash
-   npm install @kenniy/godeye-event-contracts
-   ```
-
-2. **Update imports:**
-
-   ```typescript
-   // Old
-   const streamName = 'user-service';
-
-   // New
-   import { EventStreams } from '@kenniy/godeye-event-contracts';
-   const streamName = EventStreams.USER_SERVICE_EVENTS;
-   ```
-
-3. **Update event types:**
-
-   ```typescript
-   // Old
-   const eventType = 'business.registered';
-
-   // New
-   import { UserServiceEvents } from '@kenniy/godeye-event-contracts';
-   const eventType = UserServiceEvents.BUSINESS_REGISTERED;
-   ```
-
-4. **Test thoroughly** - Events will now flow correctly between services!
-
-## 📊 Consumer Groups
-
-```typescript
-import { ConsumerGroups } from '@kenniy/godeye-event-contracts';
-
-// Predefined consumer groups for different purposes
-ConsumerGroups.HRM_PROCESSORS           // 'hrm-business-processors'
-ConsumerGroups.EMAIL_PROCESSORS         // 'email-notification-processors'
-ConsumerGroups.ANALYTICS_PROCESSORS     // 'analytics-processors'
-ConsumerGroups.AUDIT_PROCESSORS         // 'audit-trail-processors'
-```
+- **v1.0.11** - Complete standardization with clean folder structure
+- **v1.0.10** - Added missing event types and fixed import mismatches
+- **v1.0.9** - Event flow mapping and mismatch resolution
+- **v1.0.8** - Consumer group reorganization
+- **v1.0.7** - Stream standardization
+- **v1.0.6** - Initial standardized contracts
 
 ## 🛠️ Development
 
@@ -302,51 +264,31 @@ npm run prepublishOnly
 npm publish
 ```
 
-## 📈 Roadmap
+## 🔗 Related Packages
 
-### Phase 1: Service-Based (✅ ABSOLUTELY COMPLETED)
+This package is part of the GOD-EYE Healthcare Platform:
 
-- [x] Standardized stream names using EventStreams constants
-- [x] Type-safe event schemas with ServiceNames constants
-- [x] Consumer group definitions using ConsumerGroups constants
-- [x] **v1.0.5**: ServiceNames constants for consistent metadata
-- [x] **v1.0.6**: Removed ALL legacy code and migration helpers
-- [x] **v1.0.7**: Eliminated ALL hardcoded strings and repetition
-- [x] **FINAL**: Zero compromises - pure standardization achieved
-
-### Phase 2: Domain-Based (6+ months)
-
-- [ ] Domain-organized streams
-- [ ] Event versioning system
-- [ ] Schema evolution tools
-- [ ] Cross-domain event routing
-
-### Phase 3: Enterprise Scale (12+ months)
-
-- [ ] Event sourcing patterns
-- [ ] CQRS integration
-- [ ] Distributed tracing
-- [ ] Event replay capabilities
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-event-type`
-3. Add event schemas with proper TypeScript types
-4. Update documentation and examples
-5. Submit a pull request
+- `@kenniy/godeye-user-service`
+- `@kenniy/godeye-hrm-service`
+- `@kenniy/godeye-file-notification-service`
 
 ## 📄 License
 
-MIT © 8Medical Development Team
+Private package for 8Medical GOD-EYE Healthcare Platform.
 
 ## 🆘 Support
 
-- **Documentation**: [GitHub Wiki](https://github.com/keniiy/god-eye-event-contracts/blob/main/README.md)
 - **Issues**: [GitHub Issues](https://github.com/keniiy/event-contracts/issues)
-- **Slack**: #event-architecture channel
 - **Email**: [kehindekehinde@gmail.com](mailto:kehindekehinde@gmail.com)
 
 ---
 
-**🎯 Goal**: Zero integration issues across 8Medical microservices through standardized event contracts.
+### 🎯 Complete Event Standardization Achieved
+
+- ✅ Zero legacy code or naming inconsistencies
+- ✅ All services use standardized event constants
+- ✅ Event flows properly mapped end-to-end
+- ✅ Type safety with full TypeScript support
+- ✅ Clean, maintainable folder structure
+- ✅ All import mismatches resolved
+- ✅ Event communication working perfectly

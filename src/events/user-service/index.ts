@@ -23,6 +23,7 @@ export const UserServiceEvents = {
   // Registration Events
   CUSTOMER_REGISTERED: 'user.customer.registered',
   BUSINESS_REGISTERED: 'user.business.registered',
+  ADMIN_CREATED: 'user.admin.created',
   AGENT_INVITED: 'user.agent.invited',
   AGENT_ACCEPTED: 'user.agent.accepted',
   AGENT_REJECTED: 'user.agent.rejected',
@@ -30,7 +31,11 @@ export const UserServiceEvents = {
   
   // Authentication Events (coming in Phase 1.1)
   CUSTOMER_LOGGED_IN: 'user.customer.logged_in',
+  CUSTOMER_LOGGED_OUT: 'user.customer.logged_out',
   BUSINESS_LOGGED_IN: 'user.business.logged_in',
+  BUSINESS_LOGGED_OUT: 'user.business.logged_out',
+  ADMIN_LOGGED_IN: 'user.admin.logged_in',
+  ADMIN_LOGGED_OUT: 'user.admin.logged_out',
   PASSWORD_RESET_REQUESTED: 'user.password.reset_requested',
   PASSWORD_CHANGED: 'user.password.changed',
   

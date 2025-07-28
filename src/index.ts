@@ -47,12 +47,15 @@ export {
  */
 export {
   ConsumerGroups,
-  ConsumerGroupStreams,
-  ServiceConsumerRecommendations,
-  getServiceConsumerGroups,
-  getConsumerGroupStreams,
   type ConsumerGroupName,
 } from './consumers';
+
+export {
+  ConsumerGroupStreams,
+  getConsumerGroupStreams,
+  ServiceConsumerRecommendations,
+  getServiceConsumerGroups,
+} from './config';
 
 /**
  * Service Names for consistent metadata and identification
@@ -132,6 +135,22 @@ export {
 export * from './events/user-service';
 
 /**
+ * HRM Service Events - Hospital resource management, bed allocation
+ * 
+ * @example
+ * ```typescript
+ * import { 
+ *   HrmServiceEvents, 
+ *   HrmServiceEventType 
+ * } from '@kenniy/godeye-event-contracts';
+ * 
+ * // Event type constants
+ * const eventType = HrmServiceEvents.HOSPITAL_REGISTERED;
+ * ```
+ */
+export * from './events/hrm-service';
+
+/**
  * System Events - Service monitoring, health checks, infrastructure
  * 
  * @example
@@ -140,7 +159,7 @@ export * from './events/user-service';
  *   SystemEventTypes, 
  *   ServiceWelcomeEvent,
  *   ServiceHeartbeatEvent 
- * } from '@8medical/event-contracts';
+ * } from '@kenniy/godeye-event-contracts';
  * 
  * // Event type constants
  * const eventType = SystemEventTypes.SERVICE_WELCOME;
@@ -157,11 +176,21 @@ export * from './events/system';
 // FUTURE SERVICE EXPORTS (will be added in Phase 1.1+)
 // =============================================================================
 
-// TODO: Add HRM Service events
-// export { HrmServiceEvents, ... } from './events/hrm-service';
-
-// TODO: Add Notification Service events  
-// export { NotificationServiceEvents, ... } from './events/notifications';
+/**
+ * File+Notification Service Events - Email delivery, SMS, file processing
+ * 
+ * @example
+ * ```typescript
+ * import { 
+ *   NotificationServiceEventTypes, 
+ *   EmailNotificationEvent 
+ * } from '@kenniy/godeye-event-contracts';
+ * 
+ * // Event type constants
+ * const eventType = NotificationServiceEventTypes.EMAIL_SENT;
+ * ```
+ */
+export * from './events/file-notification-service';
 
 // TODO: Add Payment Service events
 // export { PaymentServiceEvents, ... } from './events/payments';
